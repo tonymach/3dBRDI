@@ -6,8 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.MagicLeap;
 using UnityEngine.Networking;
 
-
-
 // This class is responsible for spawning objects and targets in the scene, and moving the selected object based on the user's hand gestures.
 public class SpawnObjectOnTrigger : MonoBehaviour
 {
@@ -28,9 +26,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private List<ObjectPathData> objectPath = new List<ObjectPathData>();
     private string fileName;
 
-    //End of PathDataAccumulation
-
-
     // Serialized variables to assign in the Unity editor
     [SerializeField] private GameObject[] objectPrefabs; // Array to hold object prefabs
     [SerializeField] private GameObject[] targetPrefabs; // Array to hold target prefabs
@@ -50,9 +45,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private Direction[] availableDirections = { Direction.Right, Direction.Left, Direction.Up, Direction.Down };
     private Direction targetDirection = Direction.Left;
 
-
     private List<GameObject> spawnedTargets = new List<GameObject>(); // List to hold spawned targets
-
 
     private string[] birdTags = { "Red", "Blue", "Yellow" };
     private string levelTag = "Red";
@@ -63,11 +56,8 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private Camera mainCamera;
     private Vector3 targetPosition;
 
-
     private MagicLeapInputs mlInputs;
     private MagicLeapInputs.ControllerActions controllerActions;
-    private XRRayInteractor xRRayInteractor;
-    private UnityEngine.XR.XRInputSubsystem inputSubsystem;
     private GameObject selectedObject;
     private GameObject spawnedObject;
 
@@ -78,9 +68,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private bool initialSpawnLocationSet = false;
     private bool resetStarted = false;
 
-
-    private Vector3 initialControllerOffset;
-
     private Transform previousControllerTransform;
     private float initialObjectDistance;
 
@@ -89,7 +76,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     //Gamification variables
     private int currentLevel = 1;
     private int levelCounter = 0;
-    private int score = 0;
     private float levelStartTime;
 
     [SerializeField] private float smoothness = 5.0f;
@@ -418,21 +404,10 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
     private void LevelCompleted() //LevelCompleted
     {
-        // Print the object path
-        PrintObjectPath();
-
-
-        UpdateScore();
         levelStartTime = Time.time;
-
         UpdateLevel();
-
         ShowSuccessFeedback(spawnedTargets[0]); //Real target is always the first in the index
-        Debug.Log(objectPath);
-
-        Debug.Log("SendObjectPathData called");
         SendObjectPathData(levelCounter.ToString(), currentLevelType.ToString(), "Alpha", objectPath);
-
 
         resetStarted = true;
         Invoke("ResetScene", 2f);
@@ -525,7 +500,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         SpawnObjectAndTarget();
 
         // Clear the object path data
-        ClearObjectPath();
+        objectPath.Clear();
 
         previousControllerTransform = null;
 
@@ -662,21 +637,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
      *  Data gathering functions
      */
 
-    private void ClearObjectPath()
-    {
-        objectPath.Clear();
-    }
-
-    private void PrintObjectPath()
-    {
-        Debug.Log("Object Path:");
-        foreach (ObjectPathData data in objectPath)
-        {
-            Debug.Log("Time: " + data.timestamp + ", Position: " + data.position);
-        }
-    }
-
-
     private void StorePreviousControllerTransform()
     {
         if (previousControllerTransform == null)
@@ -688,12 +648,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         previousControllerTransform.rotation = controller.transform.rotation;
     }
 
-    private void UpdateScore()
-    {
-        float timeTaken = Time.time - levelStartTime;
-        int timeScore = Mathf.Max(0, (int)(100 - timeTaken * 10)); // Score decreases by 10 points for each second taken
-        score += timeScore;
-    }
+
 
     [System.Serializable]
     public class ExperimentData
@@ -794,48 +749,9 @@ public enum Direction
     Down
 }
 
-public class BreadcrumbManager : MonoBehaviour
-{
-    public GameObject breadcrumbPrefab; // Assign in Unity editor
-    public GameObject objectToTrack; // Assign the object to track
-    public float breadcrumbSpacing = 0.1f; // Distance between breadcrumbs
-    public float breadcrumbDuration = 1f; // Duration each breadcrumb exists before disappearing
-
-    private Vector3 lastBreadcrumbPosition;
-
-    private void Start()
-    {
-        if (objectToTrack != null)
-        {
-            lastBreadcrumbPosition = objectToTrack.transform.position;
-        }
-    }
-
-    private void Update()
-    {
-        if (objectToTrack != null)
-        {
-            // Check if the object has moved more than breadcrumbSpacing from the last breadcrumb
-            if (Vector3.Distance(objectToTrack.transform.position, lastBreadcrumbPosition) >= breadcrumbSpacing)
-            {
-                SpawnBreadcrumb();
-            }
-        }
-    }
-
-    private void SpawnBreadcrumb()
-    {
-        GameObject breadcrumb = Instantiate(breadcrumbPrefab, objectToTrack.transform.position, Quaternion.identity);
-        breadcrumb.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        Destroy(breadcrumb, breadcrumbDuration);
-        lastBreadcrumbPosition = objectToTrack.transform.position;
-    }
 
 
-}
-
-
-/*  The purpose of this script is to create a multi-level game featuring targets, represented to the user as bird nests, and birds of various types, which serve as the objects.
+/*  As of May, 2023: The purpose of this script is to create a multi-level game featuring targets, represented to the user as bird nests, and birds of various types, which serve as the objects.
 Initially, a nest is instantiated either above, below, left, or right of the bird. The user is then tasked with moving the bird to the nest. This basic scenario is repeated ten times.
 In the next level, the nest remains randomly positioned around the bird, but the controls are completely inverted. This condition is again repeated ten times.
 In the subsequent level, nests are generated in all four directions (up, down, left, and right). Each bird is a different color, and so are the eggs in the nests. The user's task is to match the bird color to the color of the eggs in the nest. If the user places the bird in the wrong nest, it's considered a failed condition, but if they match correctly, it's a success. This condition is repeated ten times, then it repeats again with inverted controls.
