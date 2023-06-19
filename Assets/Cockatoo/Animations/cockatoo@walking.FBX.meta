@@ -1,0 +1,450 @@
+fileFormatVersion: 2
+guid: 5d22025af5b599d47b0e2c5eceff20a9
+timeCreated: 1538762933
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cockatoo
+    100002: //RootNode
+    100004: cockatoo_Bone047_bone
+    100006: cockatoo_Bone051_bone
+    100008: cockatoo_COM_ctrl
+    100010: cockatoo_FeatherHead_10_bone
+    100012: cockatoo_FeatherHead_11_bone
+    100014: cockatoo_FeatherHead_12_bone
+    100016: cockatoo_FeatherHead_13_bone
+    100018: cockatoo_FeatherHead_14_bone
+    100020: cockatoo_FeatherHead_15_bone
+    100022: cockatoo_FeatherHead_16_bone
+    100024: cockatoo_FeatherHead_17_bone
+    100026: cockatoo_FeatherHead_18_bone
+    100028: cockatoo_FeatherHead_19_bone
+    100030: cockatoo_FeatherHead_1_bone
+    100032: cockatoo_FeatherHead_20_bone
+    100034: cockatoo_FeatherHead_2_bone
+    100036: cockatoo_FeatherHead_3_bone
+    100038: cockatoo_FeatherHead_4_bone
+    100040: cockatoo_FeatherHead_5_bone
+    100042: cockatoo_FeatherHead_6_bone
+    100044: cockatoo_FeatherHead_7_bone
+    100046: cockatoo_FeatherHead_8_bone
+    100048: cockatoo_FeatherHead_9_bone
+    100050: cockatoo_FeatherHead_Back_1_bone
+    100052: cockatoo_FeatherHead_Back_2_bone
+    100054: cockatoo_FeatherHead_Back_3_bone
+    100056: cockatoo_FeatherHead_Back_4_bone
+    100058: cockatoo_FeatherHead_Back_5_bone
+    100060: cockatoo_FeatherHead_Front_1_bone
+    100062: cockatoo_FeatherHead_Front_2_bone
+    100064: cockatoo_FeatherHead_Front_3_bone
+    100066: cockatoo_FeatherHead_Front_4_bone
+    100068: cockatoo_FeatherHead_Front_5_bone
+    100070: cockatoo_FeatherTail_l_1_bone
+    100072: cockatoo_FeatherTail_l_2_bone
+    100074: cockatoo_FeatherTail_r_1_bone
+    100076: cockatoo_FeatherTail_r_2_bone
+    100078: cockatoo_Femur_l_bone
+    100080: cockatoo_Femur_R_bone
+    100082: cockatoo_FingerBB_l_1_bone
+    100084: cockatoo_FingerBB_l_2_bone
+    100086: cockatoo_FingerBB_l_3_bone
+    100088: cockatoo_FingerBB_r_1_bone
+    100090: cockatoo_FingerBB_r_2_bone
+    100092: cockatoo_FingerBB_r_3_bone
+    100094: cockatoo_FingerBF_l_1_bone
+    100096: cockatoo_FingerBF_l_2_bone
+    100098: cockatoo_FingerBF_l_3_bone
+    100100: cockatoo_FingerBF_r_1_bone
+    100102: cockatoo_FingerBF_r_2_bone
+    100104: cockatoo_FingerBF_r_3_bone
+    100106: cockatoo_FingerSB_l_1_bone
+    100108: cockatoo_FingerSB_l_2_bone
+    100110: cockatoo_FingerSB_l_3_bone
+    100112: cockatoo_FingerSB_r_1_bone
+    100114: cockatoo_FingerSB_r_2_bone
+    100116: cockatoo_FingerSB_r_3_bone
+    100118: cockatoo_FingerSF_l_1_bone
+    100120: cockatoo_FingerSF_l_2_bone
+    100122: cockatoo_FingerSF_l_3_bone
+    100124: cockatoo_FingerSF_r_1_bone
+    100126: cockatoo_FingerSF_r_2_bone
+    100128: cockatoo_FingerSF_r_3_bone
+    100130: cockatoo_Head_bone
+    100132: cockatoo_Humerus_l_bone
+    100134: cockatoo_Humerus_r_bone
+    100136: cockatoo_Ilium_bone
+    100138: cockatoo_Leg_L(mirrored)_bone
+    100140: cockatoo_Leg_R_bone
+    100142: cockatoo_LowerMandible_bone
+    100144: cockatoo_Main_ctrl
+    100146: cockatoo_Metacarpus_l_bone
+    100148: cockatoo_Metacarpus_r_bone
+    100150: cockatoo_Neck_bone
+    100152: cockatoo_Scapula_bone
+    100154: cockatoo_Tail_bone
+    100156: cockatoo_TailEnd_bone
+    100158: cockatoo_Tarsus_l_bone
+    100160: cockatoo_Tarsus_R_bone
+    100162: cockatoo_Tibia_l_bone
+    100164: cockatoo_Tibia_R_bone
+    100166: cockatoo_Ulna_l_bone
+    100168: cockatoo_Ulna_r_bone
+    100170: cockatoo_UpperMandible_bone
+    400000: Cockatoo
+    400002: //RootNode
+    400004: cockatoo_Bone047_bone
+    400006: cockatoo_Bone051_bone
+    400008: cockatoo_COM_ctrl
+    400010: cockatoo_FeatherHead_10_bone
+    400012: cockatoo_FeatherHead_11_bone
+    400014: cockatoo_FeatherHead_12_bone
+    400016: cockatoo_FeatherHead_13_bone
+    400018: cockatoo_FeatherHead_14_bone
+    400020: cockatoo_FeatherHead_15_bone
+    400022: cockatoo_FeatherHead_16_bone
+    400024: cockatoo_FeatherHead_17_bone
+    400026: cockatoo_FeatherHead_18_bone
+    400028: cockatoo_FeatherHead_19_bone
+    400030: cockatoo_FeatherHead_1_bone
+    400032: cockatoo_FeatherHead_20_bone
+    400034: cockatoo_FeatherHead_2_bone
+    400036: cockatoo_FeatherHead_3_bone
+    400038: cockatoo_FeatherHead_4_bone
+    400040: cockatoo_FeatherHead_5_bone
+    400042: cockatoo_FeatherHead_6_bone
+    400044: cockatoo_FeatherHead_7_bone
+    400046: cockatoo_FeatherHead_8_bone
+    400048: cockatoo_FeatherHead_9_bone
+    400050: cockatoo_FeatherHead_Back_1_bone
+    400052: cockatoo_FeatherHead_Back_2_bone
+    400054: cockatoo_FeatherHead_Back_3_bone
+    400056: cockatoo_FeatherHead_Back_4_bone
+    400058: cockatoo_FeatherHead_Back_5_bone
+    400060: cockatoo_FeatherHead_Front_1_bone
+    400062: cockatoo_FeatherHead_Front_2_bone
+    400064: cockatoo_FeatherHead_Front_3_bone
+    400066: cockatoo_FeatherHead_Front_4_bone
+    400068: cockatoo_FeatherHead_Front_5_bone
+    400070: cockatoo_FeatherTail_l_1_bone
+    400072: cockatoo_FeatherTail_l_2_bone
+    400074: cockatoo_FeatherTail_r_1_bone
+    400076: cockatoo_FeatherTail_r_2_bone
+    400078: cockatoo_Femur_l_bone
+    400080: cockatoo_Femur_R_bone
+    400082: cockatoo_FingerBB_l_1_bone
+    400084: cockatoo_FingerBB_l_2_bone
+    400086: cockatoo_FingerBB_l_3_bone
+    400088: cockatoo_FingerBB_r_1_bone
+    400090: cockatoo_FingerBB_r_2_bone
+    400092: cockatoo_FingerBB_r_3_bone
+    400094: cockatoo_FingerBF_l_1_bone
+    400096: cockatoo_FingerBF_l_2_bone
+    400098: cockatoo_FingerBF_l_3_bone
+    400100: cockatoo_FingerBF_r_1_bone
+    400102: cockatoo_FingerBF_r_2_bone
+    400104: cockatoo_FingerBF_r_3_bone
+    400106: cockatoo_FingerSB_l_1_bone
+    400108: cockatoo_FingerSB_l_2_bone
+    400110: cockatoo_FingerSB_l_3_bone
+    400112: cockatoo_FingerSB_r_1_bone
+    400114: cockatoo_FingerSB_r_2_bone
+    400116: cockatoo_FingerSB_r_3_bone
+    400118: cockatoo_FingerSF_l_1_bone
+    400120: cockatoo_FingerSF_l_2_bone
+    400122: cockatoo_FingerSF_l_3_bone
+    400124: cockatoo_FingerSF_r_1_bone
+    400126: cockatoo_FingerSF_r_2_bone
+    400128: cockatoo_FingerSF_r_3_bone
+    400130: cockatoo_Head_bone
+    400132: cockatoo_Humerus_l_bone
+    400134: cockatoo_Humerus_r_bone
+    400136: cockatoo_Ilium_bone
+    400138: cockatoo_Leg_L(mirrored)_bone
+    400140: cockatoo_Leg_R_bone
+    400142: cockatoo_LowerMandible_bone
+    400144: cockatoo_Main_ctrl
+    400146: cockatoo_Metacarpus_l_bone
+    400148: cockatoo_Metacarpus_r_bone
+    400150: cockatoo_Neck_bone
+    400152: cockatoo_Scapula_bone
+    400154: cockatoo_Tail_bone
+    400156: cockatoo_TailEnd_bone
+    400158: cockatoo_Tarsus_l_bone
+    400160: cockatoo_Tarsus_R_bone
+    400162: cockatoo_Tibia_l_bone
+    400164: cockatoo_Tibia_R_bone
+    400166: cockatoo_Ulna_l_bone
+    400168: cockatoo_Ulna_r_bone
+    400170: cockatoo_UpperMandible_bone
+    2300000: cockatoo_COM_ctrl
+    3300000: cockatoo_COM_ctrl
+    4300000: Cockatoo
+    4300002: cockatoo_COM_ctrl
+    7400000: walking
+    9500000: //RootNode
+    13700000: Cockatoo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walking
+      takeName: Take 001
+      firstFrame: 64
+      lastFrame: 82
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cockatoo
+        weight: 1
+      - path: cockatoo_COM_ctrl
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBB_l_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBB_l_1_bone/cockatoo_FingerBB_l_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBB_l_1_bone/cockatoo_FingerBB_l_2_bone/cockatoo_FingerBB_l_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBF_l_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBF_l_1_bone/cockatoo_FingerBF_l_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerBF_l_1_bone/cockatoo_FingerBF_l_2_bone/cockatoo_FingerBF_l_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSB_l_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSB_l_1_bone/cockatoo_FingerSB_l_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSB_l_1_bone/cockatoo_FingerSB_l_2_bone/cockatoo_FingerSB_l_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSF_l_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSF_l_1_bone/cockatoo_FingerSF_l_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_l_bone/cockatoo_Tibia_l_bone/cockatoo_Tarsus_l_bone/cockatoo_Leg_L(mirrored)_bone/cockatoo_FingerSF_l_1_bone/cockatoo_FingerSF_l_2_bone/cockatoo_FingerSF_l_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBB_r_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBB_r_1_bone/cockatoo_FingerBB_r_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBB_r_1_bone/cockatoo_FingerBB_r_2_bone/cockatoo_FingerBB_r_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBF_r_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBF_r_1_bone/cockatoo_FingerBF_r_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerBF_r_1_bone/cockatoo_FingerBF_r_2_bone/cockatoo_FingerBF_r_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSB_r_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSB_r_1_bone/cockatoo_FingerSB_r_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSB_r_1_bone/cockatoo_FingerSB_r_2_bone/cockatoo_FingerSB_r_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSF_r_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSF_r_1_bone/cockatoo_FingerSF_r_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Femur_R_bone/cockatoo_Tibia_R_bone/cockatoo_Tarsus_R_bone/cockatoo_Leg_R_bone/cockatoo_FingerSF_r_1_bone/cockatoo_FingerSF_r_2_bone/cockatoo_FingerSF_r_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_l_bone/cockatoo_Ulna_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_l_bone/cockatoo_Ulna_l_bone/cockatoo_Metacarpus_l_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_r_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_r_bone/cockatoo_Ulna_r_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Humerus_r_bone/cockatoo_Ulna_r_bone/cockatoo_Metacarpus_r_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_1_bone/cockatoo_FeatherHead_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_1_bone/cockatoo_FeatherHead_2_bone/cockatoo_FeatherHead_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_1_bone/cockatoo_FeatherHead_2_bone/cockatoo_FeatherHead_3_bone/cockatoo_FeatherHead_4_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_1_bone/cockatoo_FeatherHead_2_bone/cockatoo_FeatherHead_3_bone/cockatoo_FeatherHead_4_bone/cockatoo_FeatherHead_5_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_6_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_6_bone/cockatoo_FeatherHead_7_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_6_bone/cockatoo_FeatherHead_7_bone/cockatoo_FeatherHead_8_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_6_bone/cockatoo_FeatherHead_7_bone/cockatoo_FeatherHead_8_bone/cockatoo_FeatherHead_9_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_6_bone/cockatoo_FeatherHead_7_bone/cockatoo_FeatherHead_8_bone/cockatoo_FeatherHead_9_bone/cockatoo_FeatherHead_10_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_11_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_11_bone/cockatoo_FeatherHead_12_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_11_bone/cockatoo_FeatherHead_12_bone/cockatoo_FeatherHead_13_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_11_bone/cockatoo_FeatherHead_12_bone/cockatoo_FeatherHead_13_bone/cockatoo_FeatherHead_14_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_11_bone/cockatoo_FeatherHead_12_bone/cockatoo_FeatherHead_13_bone/cockatoo_FeatherHead_14_bone/cockatoo_FeatherHead_15_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_16_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_16_bone/cockatoo_FeatherHead_17_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_16_bone/cockatoo_FeatherHead_17_bone/cockatoo_FeatherHead_18_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_16_bone/cockatoo_FeatherHead_17_bone/cockatoo_FeatherHead_18_bone/cockatoo_FeatherHead_19_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_16_bone/cockatoo_FeatherHead_17_bone/cockatoo_FeatherHead_18_bone/cockatoo_FeatherHead_19_bone/cockatoo_FeatherHead_20_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Back_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Back_1_bone/cockatoo_FeatherHead_Back_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Back_1_bone/cockatoo_FeatherHead_Back_2_bone/cockatoo_FeatherHead_Back_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Back_1_bone/cockatoo_FeatherHead_Back_2_bone/cockatoo_FeatherHead_Back_3_bone/cockatoo_FeatherHead_Back_4_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Back_1_bone/cockatoo_FeatherHead_Back_2_bone/cockatoo_FeatherHead_Back_3_bone/cockatoo_FeatherHead_Back_4_bone/cockatoo_FeatherHead_Back_5_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Front_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Front_1_bone/cockatoo_FeatherHead_Front_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Front_1_bone/cockatoo_FeatherHead_Front_2_bone/cockatoo_FeatherHead_Front_3_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Front_1_bone/cockatoo_FeatherHead_Front_2_bone/cockatoo_FeatherHead_Front_3_bone/cockatoo_FeatherHead_Front_4_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_FeatherHead_Front_1_bone/cockatoo_FeatherHead_Front_2_bone/cockatoo_FeatherHead_Front_3_bone/cockatoo_FeatherHead_Front_4_bone/cockatoo_FeatherHead_Front_5_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_LowerMandible_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_UpperMandible_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Scapula_bone/cockatoo_Neck_bone/cockatoo_Bone051_bone/cockatoo_Head_bone/cockatoo_UpperMandible_bone/cockatoo_Bone047_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone/cockatoo_TailEnd_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone/cockatoo_TailEnd_bone/cockatoo_FeatherTail_l_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone/cockatoo_TailEnd_bone/cockatoo_FeatherTail_l_2_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone/cockatoo_TailEnd_bone/cockatoo_FeatherTail_r_1_bone
+        weight: 1
+      - path: cockatoo_COM_ctrl/cockatoo_Main_ctrl/cockatoo_Ilium_bone/cockatoo_Tail_bone/cockatoo_TailEnd_bone/cockatoo_FeatherTail_r_2_bone
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: cockatoo_COM_ctrl
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

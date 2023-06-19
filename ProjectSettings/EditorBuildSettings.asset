@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/0. Starter conditions/Starer simple.unity
+    guid: 55398d6fafe74426c81dcc1c0245197b
+  m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d3ecac49fd53241969ebf02375bb3846,
+      type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 5000b87f05b4b43fea9014a0e0cd4ac9,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2d2a55605b5154235a51482333ba5f34,
+      type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: d6346489233044cb3afc626aea08f07f,
+      type: 2}
