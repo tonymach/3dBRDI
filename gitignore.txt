@@ -52,7 +52,7 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
-*brdiWithBirds.V*/
+/brdiWithBirds.V*/
 
 
 # Unity3D generated file on crash reports
