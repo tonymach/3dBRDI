@@ -352,7 +352,8 @@ MonoBehaviour:
   - {fileID: 14329933889387364, guid: 806b9baac383344cbb5e712ea12fd4b1, type: 3}
   fillerTargetPrefab: {fileID: 6376770151225911861, guid: 11560c7d6cb3d45ca875c3d750d81b80,
     type: 3}
-  eaglePrefab: {fileID: 0}
+  eaglePrefab: {fileID: 5374833090116323751, guid: ad3baaa2ca403794db86e1b8329f5b55,
+    type: 3}
   objectPadPrefab: {fileID: 5346654455926811658, guid: e1d9125e3fb874a3eab4e02cf382f734,
     type: 3}
   successParticle: {fileID: 1664836844622050, guid: f9a4be608a4b6436ba35f0942d6fdf86,
@@ -361,6 +362,8 @@ MonoBehaviour:
   controller: {fileID: 70740112}
   reverseRotation: 0
   chicken: {fileID: 2966378658073634086, guid: 2ae8ca47839a80b4ca5c2c3534cf458f, type: 3}
+  cockatoo: {fileID: 7265644990630858296, guid: 40c10550f95174300a0647320b838b67,
+    type: 3}
   smoothness: 5
   breadcrumbPrefab: {fileID: 6891797757669399836, guid: e4da29d9a94ea4e3886227c6fa893959,
     type: 3}

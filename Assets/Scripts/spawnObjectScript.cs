@@ -25,10 +25,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         }
     }
 
-    private MLAnchors.Request _mlAnchorsRequest;
-    private MLAnchors.Request.Params _anchorRequestParams;
-    private Dictionary<string, GameObject> _gameObjectsByAnchorId = new Dictionary<string, GameObject>();
-
     private List<ObjectPathData> objectPath = new List<ObjectPathData>();
 
     // Serialized variables to assign in the Unity editor
@@ -46,6 +42,8 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     //End of Serialized variables 
 
     [SerializeField] private GameObject chicken;
+    [SerializeField] private GameObject cockatoo;
+
 
     private GameObject target;
 
@@ -127,15 +125,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         MLSegmentedDimmer.Activate();
 
-
-        //Initialize Magic leap Spatial Anchor Requests
-        _mlAnchorsRequest = new MLAnchors.Request();
-
-        //Get the user's current Localization Info and debugs it
-        MLResult mlResult = MLAnchors.GetLocalizationInfo(out MLAnchors.LocalizationInfo info);
-        Debug.Log("Localization Info " + info);
-
-
     }
 
 
@@ -210,8 +199,11 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             initialSpawnLocationSet = true;
         }
 
-        SpawnChicken(initialSpawnLocation - mainCamera.transform.up * 0.2f);
+        SpawnChicken(initialSpawnLocation - mainCamera.transform.up * 0.5f);
+        SpawnCockatoo(initialSpawnLocation - mainCamera.transform.up * 0.2f + mainCamera.transform.right * 0.5f);
+
         SpawnObjectAndTarget();
+
 
     }
 
@@ -269,13 +261,8 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
             case LevelType.RandomEagle:
                 reverseRotation = false;
-                CreateFourNestLevel(randomIndex, targetDirection);
-                // 30% chance to spawn an eagle
-                if (Random.Range(0f, 1f) < 0.3f)
-                {
-                    GameObject eagle = Instantiate(eaglePrefab, initialSpawnLocation, Quaternion.identity);
-                    eagle.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                }
+                CreateFourNestEagleLevel(randomIndex, targetDirection);
+
                 break;
         }
 
@@ -355,6 +342,55 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
     }
 
+
+    void CreateFourNestEagleLevel(int index, Direction direction)
+    {
+
+        /*
+         *  Takes in the current selected bird and target, generates it in a random location and fills the other 3 locations
+         */
+
+        spawnedObject = Instantiate(objectPrefabs[index]);
+        spawnedObject.transform.localScale = new Vector3(2f, 2f, 2f);
+        spawnedObject.transform.position = initialSpawnLocation;
+
+        List<Direction> remainingDirections = new List<Direction>(availableDirections);
+        remainingDirections.Remove(direction);
+
+
+        // Instantiate the correct target in the selected direction
+        GameObject correctTarget = Instantiate(targetPrefabs[index]);
+        correctTarget.transform.localScale = nestSize;
+        var offset = SetTargetPosition(spawnedObject, direction);
+        correctTarget.transform.position = offset;
+        spawnedTargets.Add(correctTarget);
+
+        // 30% chance to spawn an eagle
+        if (Random.Range(0f, 1f) < 0.3f)
+        {
+            GameObject eagle = Instantiate(eaglePrefab, correctTarget.transform.position, Quaternion.identity);
+            eagle.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        }
+
+
+        for (int i = 0; i < remainingDirections.Count; i++)
+        {
+            GameObject wrongTarget = Instantiate(fillerTargetPrefab);
+            wrongTarget.transform.localScale = nestSize / 2f;
+            var wrongTargetOffset = SetTargetPosition(spawnedObject, remainingDirections[i]);
+            wrongTarget.transform.position = wrongTargetOffset;
+            spawnedTargets.Add(wrongTarget);
+        }
+
+
+        GameObject breadcrumbManagerObject = new GameObject("BreadcrumbManager");
+        BreadcrumbManager breadcrumbManager = breadcrumbManagerObject.AddComponent<BreadcrumbManager>();
+        breadcrumbManager.breadcrumbPrefab = breadcrumbPrefab;
+        breadcrumbManager.breadcrumbPrefab.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        breadcrumbManager.objectToTrack = spawnedObject;
+
+    }
+
     private void InstantiateObjectPad()
     {
         spawnedPadObject = Instantiate(objectPadPrefab);
@@ -370,6 +406,24 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         // Add a Rigidbody component to enable physics
         Rigidbody rb = chickenInstance.AddComponent<Rigidbody>();
+
+        // Set physics properties (optional)
+        rb.mass = 1f; // adjust mass
+        rb.drag = 0.5f; // adjust drag
+        rb.angularDrag = 0.05f; // adjust angular drag
+
+        // Add force to the chicken (optional)
+        rb.AddForce(Vector3.up * 5f, ForceMode.Impulse); // launches the chicken upwards
+    }
+
+    public void SpawnCockatoo(Vector3 spawnPosition)
+    {
+        // Instantiate the chicken
+        GameObject cockatooInstance = Instantiate(cockatoo, spawnPosition, Quaternion.identity);
+        cockatooInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        // Add a Rigidbody component to enable physics
+        Rigidbody rb = cockatooInstance.AddComponent<Rigidbody>();
 
         // Set physics properties (optional)
         rb.mass = 1f; // adjust mass
@@ -435,7 +489,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
                 if (Vector3.Distance(selectedObject.transform.position, target.transform.position) <= interactionDistance)
                 {
                     // If it's color match level check if the tags match
-                    if (currentLevelType == LevelType.ColorMatch && selectedObject.tag != target.tag)
+                    if (currentLevelType == LevelType.ColorMatch || currentLevelType == LevelType.ColorMatchReverse || currentLevelType == LevelType.RandomEagle && selectedObject.tag != target.tag)
                     {
                         // Failed condition, handle it here
                     }
@@ -493,10 +547,13 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     { 
         levelCounter++;
         // If the counter reaches 15, move to the next level and reset the counter
-        if (levelCounter >= 10)
+        if (levelCounter >= 15)
         {
             currentLevel++;
             levelCounter = 0;
+        }
+        if (currentLevel > 5) {
+            currentLevel = 1;
         }
 
         switch (currentLevel)
@@ -515,9 +572,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
                 break;
             case 5:
                 currentLevelType = LevelType.RandomEagle;
-                break;
-            case 6:
-                currentLevelType = LevelType.Basic;
                 break;
         }
 
