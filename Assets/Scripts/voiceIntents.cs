@@ -93,7 +93,7 @@ public class VoiceIntents : MonoBehaviour
                 Debug.Log("Starting Assessment");
                 if (!HasBeenActivated)
                 {
-                    spawnObjectOnTrigger.SpawnObjectAndTarget();
+                    spawnObjectOnTrigger.InitiateAssessment();
                     HasBeenActivated = true;
                 }
             }

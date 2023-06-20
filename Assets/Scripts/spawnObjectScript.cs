@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.MagicLeap;
 using UnityEngine.Networking;
+using static UnityEngine.XR.MagicLeap.MLAnchors.NativeBindings;
+
 
 // This class is responsible for spawning objects and targets in the scene, and moving the selected object based on the user's hand gestures.
 public class SpawnObjectOnTrigger : MonoBehaviour
@@ -23,8 +25,11 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         }
     }
 
+    private MLAnchors.Request _mlAnchorsRequest;
+    private MLAnchors.Request.Params _anchorRequestParams;
+    private Dictionary<string, GameObject> _gameObjectsByAnchorId = new Dictionary<string, GameObject>();
+
     private List<ObjectPathData> objectPath = new List<ObjectPathData>();
-    private string fileName;
 
     // Serialized variables to assign in the Unity editor
     [SerializeField] private GameObject[] objectPrefabs; // Array to hold object prefabs
@@ -39,6 +44,8 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     [SerializeField] private ActionBasedController controller;
     [SerializeField] private bool reverseRotation = false;
     //End of Serialized variables 
+
+    [SerializeField] private GameObject chicken;
 
     private GameObject target;
 
@@ -71,7 +78,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private Transform previousControllerTransform;
     private float initialObjectDistance;
 
-    private float spawnDistance = 6.0f; // 20 cm in front of the user's main camera
+    private float spawnDistance = 1.0f; // 20 cm in front of the user's main camera
 
     //Gamification variables
     private int currentLevel = 1;
@@ -120,8 +127,13 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         MLSegmentedDimmer.Activate();
 
-        fileName = $"path_data_{levelCounter}-{currentLevel}.txt";
 
+        //Initialize Magic leap Spatial Anchor Requests
+        _mlAnchorsRequest = new MLAnchors.Request();
+
+        //Get the user's current Localization Info and debugs it
+        MLResult mlResult = MLAnchors.GetLocalizationInfo(out MLAnchors.LocalizationInfo info);
+        Debug.Log("Localization Info " + info);
 
 
     }
@@ -187,6 +199,21 @@ public class SpawnObjectOnTrigger : MonoBehaviour
      *  - make everything based on arrays so that we simply check each array rather than anything else
      * 
      */
+
+    public void InitiateAssessment()
+    {
+        // Check if the initial spawn location is set, if not, set it
+        if (!initialSpawnLocationSet)
+        {
+            initialSpawnLocation = mainCamera.gameObject.transform.position + (mainCamera.gameObject.transform.forward * spawnDistance) - new Vector3(0, 0.1f, 0);
+            //            initialSpawnLocation = mainCamera.gameObject.transform.position + (mainCamera.gameObject.transform.forward * spawnDistance);
+            initialSpawnLocationSet = true;
+        }
+
+        SpawnChicken(initialSpawnLocation - mainCamera.transform.up * 0.2f);
+        SpawnObjectAndTarget();
+
+    }
 
     public void SpawnObjectAndTarget()
     {
@@ -281,6 +308,9 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         spawnedTargets.Add(tempTarget);
 
+
+
+
     }
 
 
@@ -330,6 +360,24 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         spawnedPadObject = Instantiate(objectPadPrefab);
         spawnedPadObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         spawnedPadObject.transform.position = initialSpawnLocation - mainCamera.transform.up * 0.1f;
+    }
+
+    public void SpawnChicken(Vector3 spawnPosition)
+    {
+        // Instantiate the chicken
+        GameObject chickenInstance = Instantiate(chicken, spawnPosition, Quaternion.identity);
+        chickenInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+        // Add a Rigidbody component to enable physics
+        Rigidbody rb = chickenInstance.AddComponent<Rigidbody>();
+
+        // Set physics properties (optional)
+        rb.mass = 1f; // adjust mass
+        rb.drag = 0.5f; // adjust drag
+        rb.angularDrag = 0.05f; // adjust angular drag
+
+        // Add force to the chicken (optional)
+        rb.AddForce(Vector3.up * 5f, ForceMode.Impulse); // launches the chicken upwards
     }
 
     private Direction GenerateRandomDirection()
@@ -700,7 +748,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         Debug.Log("JSON data: " + json);
 
         // Create a new UnityWebRequest and assign the target URL
-        using (UnityWebRequest www = new UnityWebRequest("http://192.168.0.104:5001/postdata", UnityWebRequest.kHttpVerbPOST))
+        using (UnityWebRequest www = new UnityWebRequest("https://brdiserver.onrender.com/postdata", UnityWebRequest.kHttpVerbPOST))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             www.uploadHandler = new UploadHandlerRaw(bodyRaw);
