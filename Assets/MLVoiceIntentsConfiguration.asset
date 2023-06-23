@@ -15,7 +15,11 @@ MonoBehaviour:
   AllVoiceIntents: []
   VoiceCommandsToAdd:
   - Id: 1
-    Value: 'engage '
+    Value: engage | start game
   - Id: 0
     Value: stop | end | time | buzzer
+  - Id: 2
+    Value: 'reset scene '
+  - Id: 3
+    Value: skip level
   SystemCommands: 0

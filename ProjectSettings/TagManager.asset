@@ -12,6 +12,7 @@ TagManager:
   - Blue
   - Red
   - Yellow
+  - Eagle
   layers:
   - Default
   - TransparentFX

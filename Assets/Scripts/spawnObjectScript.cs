@@ -43,7 +43,10 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
     [SerializeField] private GameObject chicken;
     [SerializeField] private GameObject cockatoo;
+    private GameObject instantiatedEagle;
+    private GameObject instantiatedCockatoo;
 
+    public List<Vector3> waypoints; 
 
     private GameObject target;
 
@@ -56,7 +59,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private string levelTag = "Red";
 
     private Vector3 nestSize = new Vector3(0.5f, 0.5f, 0.5f);
-    private LevelType currentLevelType = LevelType.Basic;
+    private LevelType currentLevelType = LevelType.ColorMatchDistractor;
 
     private Camera mainCamera;
     private Vector3 targetPosition;
@@ -76,12 +79,15 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     private Transform previousControllerTransform;
     private float initialObjectDistance;
 
-    private float spawnDistance = 1.0f; // 20 cm in front of the user's main camera
+    private float spawnDistance = 1.5f; // 20 cm in front of the user's main camera
 
     //Gamification variables
-    private int currentLevel = 1;
+    private int currentLevel = 6;
     private int levelCounter = 0;
     private float levelStartTime;
+
+    private bool EagleFirstPickup = false;
+    private bool EagleActive = false;
 
     [SerializeField] private float smoothness = 5.0f;
 
@@ -117,7 +123,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         controllerActions.Trigger.performed += OnTriggerDown;
         controllerActions.Trigger.canceled += OnTriggerUp;
-        controllerActions.Menu.performed += Menu_Performed;
         controllerActions.Bumper.performed += HandleOnBumper;
         controllerActions.TouchpadTouch.performed += TouchpadTouch_performed;
 
@@ -148,18 +153,20 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         Debug.LogError("TouchpadTouch_performed");
         LevelCompleted();
     }
-    private void Menu_Performed(UnityEngine.InputSystem.InputAction.CallbackContext callbackContext)
-    {
-        Debug.LogError("Menu_Performed");
-        
 
-    }
     private void OnTriggerDown(UnityEngine.InputSystem.InputAction.CallbackContext callbackContext)
     {
         Debug.LogError("OnTriggerDown");
         isTriggerPressed = true;
         if (!resetStarted)
         {
+            if (!EagleFirstPickup && (currentLevelType == LevelType.RandomEagle || currentLevelType == LevelType.ColorMatchDistractorReverseEagle))
+            {
+                EagleFirstPickup = true;
+                SwitchNests();
+
+            }
+
             RaycastSelectObject();
         }
 
@@ -179,16 +186,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             SpawnObjectAndTarget();
     }
 
-    /*TODO: 
-     * 1. Create conditions for spawning
-     * 2. Collisions based on tags etc. 
-     * 3. Reset everything
-     * 
-     *  How I'm thinking about doing it
-     *  - make everything based on arrays so that we simply check each array rather than anything else
-     * 
-     */
-
     public void InitiateAssessment()
     {
         // Check if the initial spawn location is set, if not, set it
@@ -199,8 +196,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             initialSpawnLocationSet = true;
         }
 
-        SpawnChicken(initialSpawnLocation - mainCamera.transform.up * 0.5f);
-        SpawnCockatoo(initialSpawnLocation - mainCamera.transform.up * 0.2f + mainCamera.transform.right * 0.5f);
+        //SpawnChicken(initialSpawnLocation - mainCamera.transform.up * 0.8f);
 
         SpawnObjectAndTarget();
 
@@ -264,6 +260,26 @@ public class SpawnObjectOnTrigger : MonoBehaviour
                 CreateFourNestEagleLevel(randomIndex, targetDirection);
 
                 break;
+
+            case LevelType.ColorMatchDistractor:
+                reverseRotation = false;
+                CreateFourNestLevel(randomIndex, targetDirection, spawnDistractor: true);
+
+                break;
+
+            case LevelType.ColorMatchDistractorReverse:
+                reverseRotation = true;
+                CreateFourNestLevel(randomIndex, targetDirection, spawnDistractor: true);
+
+                break;
+
+            case LevelType.ColorMatchDistractorReverseEagle:
+                reverseRotation = true;
+                CreateFourNestEagleLevel(randomIndex, targetDirection, spawnDistractor: true);
+
+                break;
+
+
         }
 
         InstantiateObjectPad();
@@ -296,12 +312,14 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         spawnedTargets.Add(tempTarget);
 
 
+        addWayPoint(spawnedObject.transform.position);
+        addWayPoint(tempTarget.transform.position);
+
 
 
     }
 
-
-    void CreateFourNestLevel(int index, Direction direction)
+    void CreateFourNestLevel(int index, Direction direction, bool spawnDistractor = false)
     {
 
         /*
@@ -322,7 +340,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         var offset = SetTargetPosition(spawnedObject, direction);
         correctTarget.transform.position = offset;
         spawnedTargets.Add(correctTarget);
-
+        addWayPoint(correctTarget.transform.position);
 
         for (int i = 0; i < remainingDirections.Count; i++)
         {
@@ -331,8 +349,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             var wrongTargetOffset = SetTargetPosition(spawnedObject, remainingDirections[i]);
             wrongTarget.transform.position = wrongTargetOffset;
             spawnedTargets.Add(wrongTarget);
-        }
-
+            addWayPoint(wrongTarget.transform.position);
 
         GameObject breadcrumbManagerObject = new GameObject("BreadcrumbManager");
         BreadcrumbManager breadcrumbManager = breadcrumbManagerObject.AddComponent<BreadcrumbManager>();
@@ -340,10 +357,28 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         breadcrumbManager.breadcrumbPrefab.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         breadcrumbManager.objectToTrack = spawnedObject;
 
+      
+
     }
 
+        if (spawnDistractor)
+        {
+            SpawnCockatoo(initialSpawnLocation);
 
-    void CreateFourNestEagleLevel(int index, Direction direction)
+        }
+
+
+    }
+
+    private void addWayPoint(Vector3 point)
+    {
+
+        Vector3 waypointPosition = point;
+        // Add the waypoint to the waypoints list
+        waypoints.Add(waypointPosition);
+    }
+
+    void CreateFourNestEagleLevel(int index, Direction direction, bool spawnDistractor = false)
     {
 
         /*
@@ -364,14 +399,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         var offset = SetTargetPosition(spawnedObject, direction);
         correctTarget.transform.position = offset;
         spawnedTargets.Add(correctTarget);
-
-        // 30% chance to spawn an eagle
-        if (Random.Range(0f, 1f) < 0.3f)
-        {
-            GameObject eagle = Instantiate(eaglePrefab, correctTarget.transform.position, Quaternion.identity);
-            eagle.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        }
-
 
         for (int i = 0; i < remainingDirections.Count; i++)
         {
@@ -388,6 +415,12 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         breadcrumbManager.breadcrumbPrefab = breadcrumbPrefab;
         breadcrumbManager.breadcrumbPrefab.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         breadcrumbManager.objectToTrack = spawnedObject;
+
+        if (spawnDistractor)
+        {
+            SpawnCockatoo(initialSpawnLocation);
+
+        }
 
     }
 
@@ -418,20 +451,18 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
     public void SpawnCockatoo(Vector3 spawnPosition)
     {
-        // Instantiate the chicken
-        GameObject cockatooInstance = Instantiate(cockatoo, spawnPosition, Quaternion.identity);
-        cockatooInstance.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
-        // Add a Rigidbody component to enable physics
-        Rigidbody rb = cockatooInstance.AddComponent<Rigidbody>();
 
-        // Set physics properties (optional)
-        rb.mass = 1f; // adjust mass
-        rb.drag = 0.5f; // adjust drag
-        rb.angularDrag = 0.05f; // adjust angular drag
+        // Instantiate the cockatoo
+        instantiatedCockatoo =  Instantiate(cockatoo, spawnPosition, Quaternion.identity);
+        instantiatedCockatoo.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
 
-        // Add force to the chicken (optional)
-        rb.AddForce(Vector3.up * 5f, ForceMode.Impulse); // launches the chicken upwards
+        Animator animator = instantiatedCockatoo.GetComponent<Animator>();
+        // Start a specific animation
+        animator.SetTrigger("flying");
+
+        StartCoroutine(MoveCoroutine(instantiatedCockatoo, 0.3f)); // Replace 1f with your desired speed
+
     }
 
     private Direction GenerateRandomDirection()
@@ -458,7 +489,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         int randomDirection = Random.Range(0, 4);
 
         Vector3 offset = Vector3.zero;
-        float targetDistance = 0.4f;
+        float targetDistance = 0.5f;
 
         switch (direction)
         {
@@ -489,7 +520,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
                 if (Vector3.Distance(selectedObject.transform.position, target.transform.position) <= interactionDistance)
                 {
                     // If it's color match level check if the tags match
-                    if (currentLevelType == LevelType.ColorMatch || currentLevelType == LevelType.ColorMatchReverse || currentLevelType == LevelType.RandomEagle && selectedObject.tag != target.tag)
+                    if (selectedObject.tag != target.tag)
                     {
                         // Failed condition, handle it here
                     }
@@ -504,7 +535,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     }
 
 
-    private void LevelCompleted() //LevelCompleted
+    public void LevelCompleted() //LevelCompleted
     {
         levelStartTime = Time.time;
         UpdateLevel();
@@ -544,15 +575,16 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
 
     private void UpdateLevel()
-    { 
+    {
         levelCounter++;
         // If the counter reaches 15, move to the next level and reset the counter
-        if (levelCounter >= 15)
+        if (levelCounter >= 5)
         {
             currentLevel++;
             levelCounter = 0;
         }
-        if (currentLevel > 5) {
+        if (currentLevel > System.Enum.GetNames(typeof(LevelType)).Length)
+        {
             currentLevel = 1;
         }
 
@@ -573,13 +605,21 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             case 5:
                 currentLevelType = LevelType.RandomEagle;
                 break;
+            case 6:
+                currentLevelType = LevelType.ColorMatchDistractor;
+                break;
+            case 7:
+                currentLevelType = LevelType.ColorMatchDistractorReverse;
+                break;
+            case 8:
+                currentLevelType = LevelType.ColorMatchDistractorReverseEagle;
+                break;
+
         }
+    }
 
 
-}
-
-
-    private void ResetScene() //Resets everything
+    public void ResetScene() //Resets everything
     {
         // Reset the object and pad
         Destroy(spawnedObject);
@@ -595,11 +635,19 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             Destroy(target);
         }
 
+        // Stop all coroutines
+        StopAllCoroutines();
+
+        Destroy(instantiatedEagle);
+
+        if (instantiatedCockatoo != null)
+        {
+            Destroy(instantiatedCockatoo);
+        }
+
         // Clear the spawnedTargets list
         spawnedTargets.Clear();
 
-        // Spawn new object and target
-        SpawnObjectAndTarget();
 
         // Clear the object path data
         objectPath.Clear();
@@ -608,13 +656,18 @@ public class SpawnObjectOnTrigger : MonoBehaviour
 
         lastControllerPosition = Vector3.zero;
 
+        waypoints.Clear();
+
+        EagleFirstPickup = false;
+        EagleActive = false;
+
+
         resetStarted = false;
+
+        // Spawn new object and target
+        SpawnObjectAndTarget();
+
     }
-
-
-    /*
-     * Object Manipulation
-     */
 
 
     private void RaycastSelectObject()
@@ -627,6 +680,7 @@ public class SpawnObjectOnTrigger : MonoBehaviour
             // Check if the hit object is of interest based on its tag
             if (IsTagInArray(hit.collider.gameObject.tag, birdTags))
             {
+
                 selectedObject = hit.collider.gameObject;
                 initialObjectDistance = Vector3.Distance(selectedObject.transform.position, controller.transform.position);
 
@@ -638,6 +692,69 @@ public class SpawnObjectOnTrigger : MonoBehaviour
         {
             selectedObject = null;
         }
+    }
+
+    private void SwitchNests()
+    {
+        instantiatedEagle = Instantiate(eaglePrefab, spawnedTargets[0].transform.position, Quaternion.identity);
+        instantiatedEagle.transform.Rotate(new Vector3(0, 180, 0));
+        instantiatedEagle.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        EagleActive = true;
+
+        StartCoroutine(FlyIn(instantiatedEagle, spawnedTargets[0].transform.position, 1.5f));
+
+        int randomIndex;
+        do
+        {
+            randomIndex = Random.Range(0, spawnedTargets.Count);
+        }
+        while (randomIndex == 0); // This ensures that randomIndex is never 0, the index of the correct nest
+
+        // Then swap positions with the randomly chosen index instead of index 2
+        Vector3 tempCorrectTargetPosition = spawnedTargets[0].transform.position;
+        Vector3 randomTargetPosition = spawnedTargets[randomIndex].transform.position;
+
+        spawnedTargets[0].transform.position = randomTargetPosition;
+        spawnedTargets[randomIndex].transform.position = tempCorrectTargetPosition;
+    }
+
+
+    IEnumerator FlyIn(GameObject obj, Vector3 finalPosition, float duration)
+    {
+        float elapsed = 0f;
+        Animator animator = obj.GetComponent<Animator>(); // get the animator component
+
+        // Define initial position in the top right
+        Vector3 initialPosition = new Vector3(Screen.width, Screen.height, finalPosition.z);
+
+        // Convert screen position to world position
+        initialPosition = Camera.main.ScreenToWorldPoint(initialPosition);
+
+        // Compute the direction
+        Vector3 direction = (finalPosition - initialPosition).normalized;
+        obj.transform.rotation = Quaternion.LookRotation(direction);
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+
+            // Move the eagle
+            obj.transform.position = Vector3.Lerp(initialPosition, finalPosition, t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.transform.position = finalPosition;
+
+        // Trigger the land animation
+        animator.SetTrigger("Land");
+
+        // Make eagle face the player
+       
+        obj.transform.LookAt(mainCamera.gameObject.transform.position);
+        //obj.transform.Rotate(new Vector3(0, 180, 0)); // Adjust this as needed
     }
 
 
@@ -733,7 +850,6 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     }
 
 
-    //Nothing needed to change here
 
     /*  
      *  Data gathering functions
@@ -831,6 +947,44 @@ public class SpawnObjectOnTrigger : MonoBehaviour
     }
 
 
+    private IEnumerator MoveCoroutine(GameObject obj, float speed)
+    {
+        int targetIndex = 0;
+
+        while (true)
+        {
+            Vector3 nestPosition = spawnedTargets[targetIndex].transform.position;
+            Vector3 cameraToNestDirection = (nestPosition - Camera.main.transform.position).normalized;
+
+            // Calculate a position 1 unit behind the nest from the perspective of the camera
+            Vector3 targetPosition = nestPosition + cameraToNestDirection * 0.5f;
+
+            float elapsed = 0f;
+            float duration = Vector3.Distance(obj.transform.position, targetPosition) / speed;
+
+            Vector3 initialPosition = obj.transform.position;
+
+            // Compute the direction
+            Vector3 direction = (targetPosition - initialPosition).normalized;
+            obj.transform.rotation = Quaternion.LookRotation(direction);
+
+            while (elapsed < duration)
+            {
+                float t = elapsed / duration;
+
+                // Move the object
+                obj.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            obj.transform.position = targetPosition;
+
+            targetIndex = (targetIndex + 1) % spawnedTargets.Count; // Move to the next target
+        }
+    }
+
 }
 
 
@@ -839,8 +993,12 @@ public enum LevelType
     Basic, // Initial simple level
     Inverted, // Level with inverted controls
     ColorMatch, // Level where the color of the bird and eggs should match
-    ColorMatchReverse,
-    RandomEagle // Level where an eagle can appear randomly
+    ColorMatchReverse, // Level where the color of the bird and eggs should match but reversed
+    RandomEagle, // Level where an eagle can appear randomly 
+    ColorMatchDistractor, //ColorMatach but with a cockatoo
+    ColorMatchDistractorReverse,
+    ColorMatchDistractorReverseEagle
+
 }
 
 public enum Direction
@@ -850,14 +1008,3 @@ public enum Direction
     Up,
     Down
 }
-
-
-
-/*  As of May, 2023: The purpose of this script is to create a multi-level game featuring targets, represented to the user as bird nests, and birds of various types, which serve as the objects.
-Initially, a nest is instantiated either above, below, left, or right of the bird. The user is then tasked with moving the bird to the nest. This basic scenario is repeated ten times.
-In the next level, the nest remains randomly positioned around the bird, but the controls are completely inverted. This condition is again repeated ten times.
-In the subsequent level, nests are generated in all four directions (up, down, left, and right). Each bird is a different color, and so are the eggs in the nests. The user's task is to match the bird color to the color of the eggs in the nest. If the user places the bird in the wrong nest, it's considered a failed condition, but if they match correctly, it's a success. This condition is repeated ten times, then it repeats again with inverted controls.
-In the following level, we return to the original simple condition. However, a surprise awaits the user: on three random trials out of ten, when the user is about to place the bird in the nest, an eagle appears in the nest and a new nest appears on the opposite side. For instance, if the original nest was on the left, the new one would be on the right, and vice versa for up and down.
-This script is designed for a cognitive assessment tool in augmented reality, specifically for the Unity engine.
-*/
-

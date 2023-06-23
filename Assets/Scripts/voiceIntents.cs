@@ -103,6 +103,18 @@ public class VoiceIntents : MonoBehaviour
                 //spawnObjectOnTrigger.SpawnObjectAndTarget();
 
             }
+            if (voiceEvent.EventID == 2) //As it stop or false
+            {
+                Debug.Log("Reset Scene");
+                spawnObjectOnTrigger.ResetScene();
+
+            }
+            if (voiceEvent.EventID == 3) //As it stop or false
+            {
+                Debug.Log("Skipping Level");
+                spawnObjectOnTrigger.LevelCompleted();
+
+            }
         }
     }
 
